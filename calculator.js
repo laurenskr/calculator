@@ -1,9 +1,11 @@
 //initialise some variables
 const displayContents = document.getElementById("window")
 const numButtons = document.querySelectorAll('.numbutton')
+const operators = document.querySelectorAll('.operator')
+const equals = document.getElementById('equals')
 let prev;
 let curr;
-let operator;
+let operator = "";
 //separate functions for adding, subtracting, etc...
 function add(prev, curr) {
     return prev + curr
@@ -21,19 +23,20 @@ function divide(prev, curr){
 }
 //operate function
 function operate(prev, curr, operator){
+    prev = parseInt(prev)
+    curr = parseInt(curr)
     switch(operator) {
         case "+" :
-            add(prev,curr);
+            return add(prev,curr);
             break;
         case "-" :
-            subtract(prev,curr);
+            return subtract(prev,curr);
             break;
         case "*" :
-            multiply(prev,curr);
+            return multiply(prev,curr);
             break;
         case "/" :
-            divide(prev,curr);
-            break;
+            return divide(prev,curr);
     }
 
 }
@@ -44,3 +47,20 @@ function testWindow(value){
 document.getElementById("clear").addEventListener("click", () => displayContents.innerText = "");
 
 numButtons.forEach(button => button.addEventListener("click", () => displayContents.innerText += button.innerText)) 
+
+operators.forEach(button => button.addEventListener("click", () => {
+    if (!prev){
+        prev = displayContents.innerText;
+        displayContents.innerText = "";
+        operator = button.innerText;
+    }
+
+}
+));
+equals.addEventListener("click", () =>{
+    if (prev){
+        curr = displayContents.innerText;
+        displayContents.innerText=operate(prev,curr,operator);
+        prev = ""
+    }
+})

@@ -29,7 +29,7 @@ header {
     justify-content: flex-end;
     align-items: center;
     font-size: 2em;
-    flex-grow: 1.5;
+    flex-grow: 2;
     border: 2px solid green;
     padding-right: 10px;
 }
@@ -40,6 +40,7 @@ header {
     flex-grow: 1;
 }
 button {
+    font-weight: bold;
     border: 1px solid black;
     align-self: stretch;
     width: 25%;
@@ -47,7 +48,7 @@ button {
     justify-content: center;;
     align-items: center;
 }
-.zero {
+#zero {
     flex-grow: 1;
 }
 #clear {
