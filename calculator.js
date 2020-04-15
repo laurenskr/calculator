@@ -1,3 +1,9 @@
+//initialise some variables
+const displayContents = document.getElementById("window")
+const numButtons = document.querySelectorAll('.numbutton')
+let prev;
+let curr;
+let operator;
 //separate functions for adding, subtracting, etc...
 function add(prev, curr) {
     return prev + curr
@@ -31,3 +37,10 @@ function operate(prev, curr, operator){
     }
 
 }
+function testWindow(value){
+    displayContents.innerText = value
+}
+//listen to buttonclicks
+document.getElementById("clear").addEventListener("click", () => displayContents.innerText = "");
+
+numButtons.forEach(button => button.addEventListener("click", () => displayContents.innerText += button.innerText)) 

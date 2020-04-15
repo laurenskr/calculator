@@ -23,7 +23,7 @@ header {
     border: 1px solid black;
 
 }
-.window {
+#window {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -31,6 +31,7 @@ header {
     font-size: 2em;
     flex-grow: 1.5;
     border: 2px solid green;
+    padding-right: 10px;
 }
 .button-row { 
     display: flex;
@@ -38,12 +39,28 @@ header {
     width: 100%;
     flex-grow: 1;
 }
-.button {
+button {
     border: 1px solid black;
     align-self: stretch;
-    flex-grow: 1;
     width: 25%;
     display: flex;
     justify-content: center;;
     align-items: center;
+}
+.zero {
+    flex-grow: 1;
+}
+#clear {
+    background-color: rgb(250, 205, 4);
+}
+#clear:hover {
+    background-color: rgb(221, 183, 12);
+}
+button {
+    background-color: #ffffff;
+    margin: 0px;
+    padding: 0px;
+}
+button:hover {
+    background-color: #eee;
 }
