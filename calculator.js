@@ -23,8 +23,8 @@ function divide(prev, curr){
 }
 //operate function
 function operate(prev, curr, operator){
-    prev = parseInt(prev)
-    curr = parseInt(curr)
+    prev = parseFloat(prev)
+    curr = parseFloat(curr)
     switch(operator) {
         case "+" :
             return add(prev,curr);
@@ -44,7 +44,11 @@ function testWindow(value){
     displayContents.innerText = value
 }
 //listen to buttonclicks
-document.getElementById("clear").addEventListener("click", () => displayContents.innerText = "");
+document.getElementById("clear").addEventListener("click", () => {
+    displayContents.innerText = ""
+    prev = 0;
+    curr = 0;
+});
 
 numButtons.forEach(button => button.addEventListener("click", () => displayContents.innerText += button.innerText)) 
 
