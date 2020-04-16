@@ -21,6 +21,7 @@ header {
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
+    font-size: 1.5rem;
 
 }
 #window {
@@ -32,6 +33,7 @@ header {
     flex-grow: 2;
     border: 2px solid green;
     padding-right: 10px;
+    flex-basis: 2em;
 }
 .button-row { 
     display: flex;
@@ -47,6 +49,7 @@ button {
     display: flex;
     justify-content: center;;
     align-items: center;
+    font-size: 2rem;
 }
 #zero {
     flex-grow: 1;
@@ -55,6 +58,12 @@ button {
     background-color: rgb(250, 205, 4);
 }
 #clear:hover {
+    background-color: rgb(221, 183, 12);
+}
+.operator {
+    background-color: rgb(250, 205, 4);
+}
+.operator:hover {
     background-color: rgb(221, 183, 12);
 }
 button {

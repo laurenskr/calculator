@@ -3,6 +3,7 @@ const displayContents = document.getElementById("window")
 const numButtons = document.querySelectorAll('.numbutton')
 const operators = document.querySelectorAll('.operator')
 const equals = document.getElementById('equals')
+const plusmin = document.getElementById("dunno")
 let prev;
 let curr;
 let operator = "";
@@ -21,22 +22,27 @@ function divide(prev, curr){
         return "ERROR ERROR ERROR"
     } return prev / curr;
 }
+function modulo(prev, curr){
+    return prev % curr;
+}
 //operate function
 function operate(prev, curr, operator){
+    if (!prev || !curr){
+        return "Error"
+    }
     prev = parseFloat(prev)
     curr = parseFloat(curr)
     switch(operator) {
         case "+" :
             return add(prev,curr);
-            break;
         case "-" :
             return subtract(prev,curr);
-            break;
         case "*" :
             return multiply(prev,curr);
-            break;
         case "/" :
             return divide(prev,curr);
+        case "%" :
+            return modulo(prev,curr);
     }
 
 }
@@ -64,7 +70,11 @@ operators.forEach(button => button.addEventListener("click", () => {
 equals.addEventListener("click", () =>{
     if (prev){
         curr = displayContents.innerText;
-        displayContents.innerText=operate(prev,curr,operator);
+        displayContents.innerText= Math.round(operate(prev,curr,operator) * 10000000) / 10000000;
+        if (displayContents.innerText === "NaN") {
+            displayContents.innerText = prev
+        }
         prev = ""
     }
 })
+plusmin.addEventListener("click", () => {alert("Nooit geweten wat deze knop deed");prev = "";curr="";})
