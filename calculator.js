@@ -46,9 +46,9 @@ function operate(prev, curr, operator){
     }
 
 }
-function testWindow(value){
-    displayContents.innerText = value
-}
+// function testWindow(value){
+//     displayContents.innerText = value
+//
 //listen to buttonclicks
 document.getElementById("clear").addEventListener("click", () => {
     displayContents.innerText = ""
@@ -68,14 +68,41 @@ operators.forEach(button => button.addEventListener("click", () => {
 }
 ));
 document.addEventListener('keydown', function(event) {
-    if ( (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 || event.keyCode <= 105)){
-        displayContents.innerText += String.fromCharCode(event.keyCode)
+    if (event.keyCode >= 48 && event.keyCode <= 57){
+        displayContents.innerText += event.keyCode - 48
+    } else if (event.keyCode >= 96 && event.keyCode <= 105){
+        displayContents.innerText += event.keyCode - 96}
+    else if (event.keyCode == 107){
+        operator = "+"
+        prev = displayContents.innerText
+        displayContents.innerText = ""
     }
-    if(event.keyCode == 37) {
-        alert('Left was pressed');
+    else if (event.keyCode == 109){
+        operator = "-"
+        prev = displayContents.innerText
+        displayContents.innerText = ""
     }
-    else if(event.keyCode == 39) {
-        alert('Right was pressed');
+    else if (event.keyCode == 106){
+        operator = "*"
+        prev = displayContents.innerText
+        displayContents.innerText = ""
+    }
+    else if (event.keyCode == 111){
+        operator = "/"
+        prev = displayContents.innerText
+        displayContents.innerText = ""
+        return
+    }
+    else if (event.keyCode == 13){
+        if (prev){
+            curr = displayContents.innerText;
+            displayContents.innerText = Math.round(operate(prev,curr,operator) * 10000000) / 10000000;
+            if (displayContents.innerText === "NaN") {
+                displayContents.innerText = "error"
+            }
+            prev = ""
+            return
+        }
     }
 });
 equals.addEventListener("click", () =>{
@@ -87,5 +114,6 @@ equals.addEventListener("click", () =>{
         }
         prev = ""
     }
-})
+}
+)
 plusmin.addEventListener("click", () => {alert("Nooit geweten wat deze knop deed");prev = "";curr="";})
