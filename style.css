@@ -22,18 +22,29 @@ header {
     align-items: center;
     border: 1px solid black;
     font-size: 1.5rem;
+    background-color: #eee;
 
 }
 #window {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: flex-end;
-    align-items: center;
+    /* align-items: center; */
     font-size: 2em;
     flex-grow: 2;
     border: 2px solid green;
     padding-right: 10px;
-    flex-basis: 2em;
+    /* flex-basis: 2em; */
+}
+#previous-entry {
+    font-size: 0.5em;
+    color: green;
+    opacity: 70%;
+}
+p {
+    margin: 0;
 }
 .button-row { 
     display: flex;
@@ -43,6 +54,7 @@ header {
 }
 button {
     font-weight: bold;
+    background-color: #444;
     border: 1px solid black;
     align-self: stretch;
     width: 25%;
@@ -66,10 +78,6 @@ button {
 .operator:hover {
     background-color: rgb(221, 183, 12);
 }
-button {
-    background-color: #ffffff;
-    margin: 0px;
-    padding: 0px;
 }
 button:hover {
     background-color: #eee;

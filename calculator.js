@@ -1,9 +1,10 @@
 //initialise some variables
-const displayContents = document.getElementById("window")
+const displayContents = document.getElementById("displayContents")
 const numButtons = document.querySelectorAll('.numbutton')
 const operators = document.querySelectorAll('.operator')
 const equals = document.getElementById('equals')
 const plusmin = document.getElementById("dunno")
+const previousEntry = document.getElementById('previous-entry')
 let prev;
 let curr;
 let operator = "";
@@ -46,10 +47,7 @@ function operate(prev, curr, operator){
     }
 
 }
-// function testWindow(value){
-//     displayContents.innerText = value
-//
-//listen to buttonclicks
+//listen for buttonclicks
 document.getElementById("clear").addEventListener("click", () => {
     displayContents.innerText = ""
     prev = 0;
@@ -57,16 +55,31 @@ document.getElementById("clear").addEventListener("click", () => {
 });
 
 numButtons.forEach(button => button.addEventListener("click", () => displayContents.innerText += button.innerText)) 
-
+//clicking an operator sets that as the operator 
 operators.forEach(button => button.addEventListener("click", () => {
     if (!prev){
         prev = displayContents.innerText;
         displayContents.innerText = "";
         operator = button.innerText;
+        previousEntry.innerText = prev + " " + operator;
     }
 
 }
 ));
+//clicking equals sign perfoms the operate function
+equals.addEventListener("click", () =>{
+    if (prev){
+        curr = displayContents.innerText;
+        displayContents.innerText= Math.round(operate(prev,curr,operator) * 10000000) / 10000000;
+        if (displayContents.innerText === "NaN") {
+            displayContents.innerText = prev
+        }
+        previousEntry.innerText = `${prev} ${operator} ${curr} = `
+        prev = "";
+    }
+}
+)
+//listening for keyboard input
 document.addEventListener('keydown', function(event) {
     if (event.keyCode >= 48 && event.keyCode <= 57){
         displayContents.innerText += event.keyCode - 48
@@ -105,15 +118,5 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
-equals.addEventListener("click", () =>{
-    if (prev){
-        curr = displayContents.innerText;
-        displayContents.innerText= Math.round(operate(prev,curr,operator) * 10000000) / 10000000;
-        if (displayContents.innerText === "NaN") {
-            displayContents.innerText = prev
-        }
-        prev = ""
-    }
-}
-)
+//easter egg on +- button
 plusmin.addEventListener("click", () => {alert("Nooit geweten wat deze knop deed");prev = "";curr="";})
