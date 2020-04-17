@@ -5,6 +5,7 @@ const operators = document.querySelectorAll('.operator')
 const equals = document.getElementById('equals')
 const plusmin = document.getElementById("dunno")
 const previousEntry = document.getElementById('previous-entry')
+const backspace = document.getElementById('backspace')
 let prev;
 let curr;
 let operator = "";
@@ -80,6 +81,8 @@ equals.addEventListener("click", () =>{
     }
 }
 )
+//clicking backspace backspaces
+backspace.addEventListener("click", () => displayContents.innerText = displayContents.innerText.slice(0,-1))
 //listening for keyboard input
 document.addEventListener('keydown', function(event) {
     if (event.keyCode >= 48 && event.keyCode <= 57){
@@ -120,6 +123,10 @@ document.addEventListener('keydown', function(event) {
             previousEntry.innerText = `${prev} ${operator} ${curr} = `
             prev = ""
         }
+    }
+    else if (event.keyCode == 8){
+        displayContents.innerText = displayContents.innerText.slice(0,-1)
+        
     }
 });
 //easter egg on +- button

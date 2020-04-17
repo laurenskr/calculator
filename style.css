@@ -41,6 +41,11 @@ header > div {
     padding-right: 10px;
     /* flex-basis: 2em; */
 }
+#backspace {
+    border: 1px dashed green;
+    padding: 0px 10px 0px 10px;
+    
+}
 #previous-entry {
     font-size: 0.5em;
     color: green;
