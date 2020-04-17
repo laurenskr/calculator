@@ -47,8 +47,9 @@ function operate(prev, curr, operator){
     }
 
 }
-//listen for buttonclicks
+//clear screen on AC button click
 document.getElementById("clear").addEventListener("click", () => {
+    previousEntry.innerText = ""
     displayContents.innerText = ""
     prev = 0;
     curr = 0;
@@ -89,22 +90,25 @@ document.addEventListener('keydown', function(event) {
         operator = "+"
         prev = displayContents.innerText
         displayContents.innerText = ""
+        previousEntry.innerText = prev + " " + operator;
     }
     else if (event.keyCode == 109){
         operator = "-"
         prev = displayContents.innerText
         displayContents.innerText = ""
+        previousEntry.innerText = prev + " " + operator;
     }
     else if (event.keyCode == 106){
         operator = "*"
         prev = displayContents.innerText
         displayContents.innerText = ""
+        previousEntry.innerText = prev + " " + operator;
     }
     else if (event.keyCode == 111){
         operator = "/"
         prev = displayContents.innerText
         displayContents.innerText = ""
-        return
+        previousEntry.innerText = prev + " " + operator;
     }
     else if (event.keyCode == 13){
         if (prev){
@@ -113,8 +117,8 @@ document.addEventListener('keydown', function(event) {
             if (displayContents.innerText === "NaN") {
                 displayContents.innerText = "error"
             }
+            previousEntry.innerText = `${prev} ${operator} ${curr} = `
             prev = ""
-            return
         }
     }
 });
